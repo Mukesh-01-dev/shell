@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
     fgets(input, sizeof(input), stdin);
     input[strlen(input) - 1] = '\0';
 
-    if (strcmp(input, exitSuccess)) {
+    if (!strcmp(input, exitSuccess)) {
 			return 0;
 		} else if (!strcmp(input, exitError)) {
       return 1;
