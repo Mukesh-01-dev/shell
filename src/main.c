@@ -4,9 +4,11 @@
 int main(int argc, char *argv[]) {
   // Flush after every printf
   setbuf(stdout, NULL);
+  char* command;
 
-  // TODO: Uncomment the code below to pass the first stage
   printf("$ ");
 
+  scanf("%s\n", command);
+  printf("%s: command not found");
   return 0;
 }
