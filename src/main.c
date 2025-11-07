@@ -9,8 +9,17 @@ int main(int argc, char *argv[]) {
     printf("$ ");
 
     char input[100];
+    char exitSuccess[] = "exit 0";
+		char exitError[] = "exit 1";
     fgets(input, sizeof(input), stdin);
     input[strlen(input) - 1] = '\0';
+
+    if (strcmp(input, exitSuccess)) {
+			return 0;
+		} else if (!strcmp(input, exitError)) {
+      return 1;
+    }
+
     printf("%s: command not found\n", input);
   }
   return 0;
