@@ -2,22 +2,40 @@
 #include <stdlib.h>
 #include<string.h>
 
+#define MAX_INPUT 100
+#define MAX_ARGS 10
+
+
+void getInput(char *str, size_t size) {
+	printf("$ ");
+	fflush(stdout);
+	if (fgets(str, size, stdin)) {
+			size_t len = strlen(str);
+			if (len > 0 && str[len-1] == '\n') {
+					str[len-1] = '\0';
+			}
+	}
+}
+
+int checkExitCommand(const char *input) {
+    if (strcmp(input, "exit 0") == 0) {
+        return 0;
+    }
+    if (strcmp(input, "exit 1") == 0) {
+        return 1;
+    }
+    return -1;
+}
+
 int main(int argc, char *argv[]) {
-  // Flush after every printf
+  char input[MAX_INPUT];
+
   while (1) {
-    setbuf(stdout, NULL);
-    printf("$ ");
+    getInput(input, sizeof(input));
 
-    char input[100];
-    char exitSuccess[] = "exit 0";
-		char exitError[] = "exit 1";
-    fgets(input, sizeof(input), stdin);
-    input[strlen(input) - 1] = '\0';
-
-    if (!strcmp(input, exitSuccess)) {
-			return 0;
-		} else if (!strcmp(input, exitError)) {
-      return 1;
+    int code = checkExitCommand(input);
+    if (code != -1) {
+      exit(code);
     }
 
     printf("%s: command not found\n", input);
