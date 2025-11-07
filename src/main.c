@@ -4,12 +4,14 @@
 
 int main(int argc, char *argv[]) {
   // Flush after every printf
-  setbuf(stdout, NULL);
-  printf("$ ");
+  while (1) {
+    setbuf(stdout, NULL);
+    printf("$ ");
 
-  char input[100];
-  fgets(input, sizeof(input), stdin);
-	input[strlen(input) - 1] = '\0';
-  printf("%s: command not found\n", input);
+    char input[100];
+    fgets(input, sizeof(input), stdin);
+    input[strlen(input) - 1] = '\0';
+    printf("%s: command not found\n", input);
+  }
   return 0;
 }
